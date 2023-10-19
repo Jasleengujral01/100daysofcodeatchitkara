@@ -1,16 +1,19 @@
 class Solution {
-    public boolean backspaceCompare(String S, String T) {
-        return build(S).equals(build(T));
+    public boolean backspaceCompare(String s, String t) {
+        return processString(s).equals(processString(t));
     }
 
-    public String build(String S) {
-        Stack<Character> ans = new Stack();
-        for (char c: S.toCharArray()) {
-            if (c != '#')
-                ans.push(c);
-            else if (!ans.empty())
-                ans.pop();
+    private String processString(String input) {
+        StringBuilder result = new StringBuilder();
+        for (char c : input.toCharArray()) {
+            if (c == '#') {
+                if (result.length() > 0) {
+                    result.deleteCharAt(result.length() - 1);
+                }
+            } else {
+                result.append(c);
+            }
         }
-        return String.valueOf(ans);
+        return result.toString();
     }
 }
