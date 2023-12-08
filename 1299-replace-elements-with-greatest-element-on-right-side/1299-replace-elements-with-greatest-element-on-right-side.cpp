@@ -3,11 +3,13 @@ public:
     vector<int> replaceElements(vector<int>& arr) {
         int n=arr.size();
         int maxRight=-1;
+        vector<int> nums(n);
+        
         for(int i=n-1;i>=0;--i){
-            int temp = arr[i];
-            arr[i]=maxRight;
-            maxRight=max(maxRight,temp);
+            nums[i]=maxRight;
+            maxRight=max(arr[i],maxRight);
+           
         }
-        return arr;
+        return nums;
     }
 };
